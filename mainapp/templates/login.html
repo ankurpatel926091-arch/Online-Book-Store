@@ -1,0 +1,54 @@
+{% extends "base.html" %}
+{% load static %}
+{% block main %}
+<div class="row">
+    <div class="col-sm-4 mx-auto">
+        <div class="card text-bg-dark" style="height: 540px;">
+            <img src="{% static 'img/book.jpg' %}" class="card-img" alt="...">
+            <div class="card-img-overlay">
+                <h3 class="card-title fw-bold text-center">LOGIN</h3>
+                <form method="post">
+                   {% csrf_token %}
+                    <div class="mb-3">
+                        <label for="exampleInputEmail1" class="form-label">
+                            <h5>Email</h5>
+                        </label>
+                        <input type="email" name="username" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                    </div>
+                    <div class="mb-3">
+                        <label for="exampleInputPassword1" class="form-label">
+                            <h5>Password</h5>
+                        </label>
+                        <input type="password" name="password" class="form-control" id="exampleInputPassword1"
+                            aria-describedby="password1Help">
+                    </div>
+               
+                <div class="row text-center">
+                    <a href="#">forgot password?</a>
+                </div>
+                <br>
+                <div class="row ms-5 me-5">
+                   <button class="btn btn-success w-100" type="submit">Login</button>
+                </div>
+                <br>
+                <p class="text-center">Don't have an account ?<a href="{% url 'register' %}">Register</a></p>
+                <h4>
+                    <p class="text-center">Login with</p>
+                </h4>
+                <p class="text-center">
+                    <button data-mdb-ripple-init type="button" class="btn btn-secondary btn-floating mx-1">
+                        <i class="fa-brands fa-facebook" style=" color: #ffffff;"></i>
+                    </button>
+                    <button data-mdb-ripple-init type="button" class="btn btn-secondary btn-floating mx-1">
+                        <i class="fa-brands fa-google" style="color: #ffffff;"></i>
+                    </button>
+                    <button data-mdb-ripple-init type="button" class="btn btn-secondary btn-floating mx-1">
+                        <i class="fa-brands fa-twitter" style="color: #ffffff;"></i>
+                    </button>
+                </p>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

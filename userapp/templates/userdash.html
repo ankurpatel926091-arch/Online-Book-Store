@@ -1,0 +1,89 @@
+{% extends 'userbase.html' %}
+{% load static %}
+{% block user %}
+
+<div class="container-fluid mt-4">
+    <div class="row g-4">
+
+        <!-- Welcome -->
+        <div class="col-md-4">
+            <div class="card shadow border-0 rounded-4">
+                <div class="card-body text-center p-4">
+                    <img src="{% static 'images/user.png' %}" width="80" class="rounded-circle mb-3">
+                    <h4 class="fw-bold">Welcome {{ request.session.name }}</h4>
+                    <p class="text-muted">Manage your account easily 📚</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Profile -->
+        <div class="col-md-4">
+            <a href="/userapp/viewprofile/" class="text-decoration-none">
+                <div class="card bg-primary text-white shadow border-0 rounded-4">
+                    <div class="card-body text-center p-4">
+                        <h2>👤</h2>
+                        <h5>My Profile</h5>
+                    </div>
+                </div>
+            </a>
+        </div>
+
+        <!-- Cart -->
+        <div class="col-md-4">
+            <a href="/userapp/viewcart/" class="text-decoration-none">
+                <div class="card bg-success text-white shadow border-0 rounded-4">
+                    <div class="card-body text-center p-4">
+                        <h2>🛒</h2>
+                        <h5>My Cart</h5>
+                    </div>
+                </div>
+            </a>
+        </div>
+
+        <!-- Edit Profile -->
+        <div class="col-md-4">
+            <a href="/userapp/editprofile/" class="text-decoration-none">
+                <div class="card bg-info text-white shadow border-0 rounded-4">
+                    <div class="card-body text-center p-4">
+                        <h2>✏️</h2>
+                        <h5>Edit Profile</h5>
+                    </div>
+                </div>
+            </a>
+        </div>
+
+        <!-- Orders -->
+        <div class="col-md-4">
+            <a href="/userapp/userorders/" class="text-decoration-none">
+                <div class="card bg-warning text-dark shadow border-0 rounded-4">
+                    <div class="card-body text-center p-4">
+                        <h2>📦</h2>
+                        <h5>My Orders</h5>
+                    </div>
+                </div>
+            </a>
+        </div>
+
+        <!-- Change Password -->
+        <div class="col-md-4">
+            <a href="/userapp/changepassword/" class="text-decoration-none">
+                <div class="card bg-danger text-white shadow border-0 rounded-4">
+                    <div class="card-body text-center p-4">
+                        <h2>🔒</h2>
+                        <h5>Change Password</h5>
+                    </div>
+                </div>
+            </a>
+        </div>
+
+        <!-- Logout -->
+        <div class="col-md-12">
+            <a href="/userapp/logout/" class="btn btn-dark w-100 p-3 rounded-4">
+                🚪 Logout
+            </a>
+        </div>
+
+    </div>
+</div>
+
+{% endblock %}

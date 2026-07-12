@@ -1,0 +1,51 @@
+
+{%extends 'adminbase.html' %}
+{% block admin %}
+<div class="row">
+    <div class="col-sm-12">
+        <h3>View bookd</h3>
+    </div>
+    <div class="col-sm-9 mx-auto">
+        <div class="card p-4 shadow">
+            <form method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                <label for="title">Book Title</label>
+                <input type="text" name="title" class="form-control mb-4" id="title">
+                <label for="author">Author</label>
+                <input type="text" name="author" class="form-control mb-4" id="author">
+                
+                <label for="description">Description</label>
+                <input type="text" name="description" class="form-control mb-4" id="description">
+                <label for="op">Original Price</label>
+                <input type="number" name="original_price" class="form-control mb-4" id="op">
+                <label for="price">Price</label>
+                <input type="number" name="price" class="form-control mb-4" id="price">
+                
+                
+                <select name="catid" id="cat" class="form-control required">
+                    
+                    <option value=" " selected  disabled>--select catogory:--</option>
+                    {% for c in categories %}
+                    <option value="{{c.id}}">{{c.name}}</option>
+                    {% endfor %}
+                 </select> <br> <br>
+                
+                <label for="publish_date">publishdate</label>
+                <input type="date" name="publish_date" class="form-control mb-4" id="publish_date">
+                  <label for="language">Language</label>
+                <input type="text" name="language" class="form-control mb-4" id="language">
+                 <label for="cover">Cover Image:</label>
+                <input type="file" name="cover_image" class="form-control mb-4" id="cover">
+                 <label for="st">Stock:</label>
+                 <input type="number" name="stock" class="form-control mb-4" id="st">
+                 <button type="submit" name="sb" class="btn btn-success" style="text-align: center;">Add</button>
+
+
+
+
+                
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

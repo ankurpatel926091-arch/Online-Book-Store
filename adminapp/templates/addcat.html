@@ -1,0 +1,21 @@
+
+{%extends 'adminbase.html' %}
+{% block admin %}
+<div class="row">
+    <div class="col-sm-12">
+        <h3>Add new catogory</h3>
+    </div>
+    <div class="col-sm-9 mx-auto" >
+        <div class="card p-5 mt-4 shadow">
+            <form method="post">
+            {% csrf_token %}
+            <label for="catname">Catogory Name</label>
+            <input type="text" name="name" class="form-control mb-4" id="catname">
+            <label for="desc">Description</label>
+            <textarea name="description" class="form-control mb-5" id="desc"></textarea>
+            <button type="submit" class="btn btn-success">Add</button>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

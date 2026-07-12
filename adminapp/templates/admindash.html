@@ -1,0 +1,37 @@
+{% extends 'adminbase.html' %}
+{% load static %}
+
+{% block admin %}
+<h3>ADMIN DASHBORD</h3>
+<div class="row">
+    <div class="col-md-4">
+        <div class="card p-5 shadow text-center" style="background: linear-gradient(rgb(19, 246, 19), rgb(234, 237, 228),rgb(26, 186, 235));">
+            <h1><i class="ti ti-user"></i></h1>
+            <h5>Total user</h5>
+            <h2>{{user_count}}</h2>
+        </div>
+    </div>
+    <div class="col-md-4" >
+        <div class="card p-5 shadow text-center" style="background: linear-gradient(rgb(10, 228, 10), rgb(245, 246, 243),rgb(207, 100, 191));">
+            <h1><i class="ti ti-book"></i></h1>
+            <h5>Total book</h5>
+            <h2>{{book_count}}</h2>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="card p-5 shadow text-center " style="background: linear-gradient(rgb(235, 79, 12), rgb(234, 237, 227),rgb(124, 210, 111));">
+            <h1><i class="ti ti-user"></i></h1>
+            <h5>Total Category</h5>
+            <h2>{{cat_count}}</h2>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="card p-5 shadow text-center" style="background: linear-gradient(rgb(131, 245, 131), rgb(230, 232, 225),rgb(127, 111, 230));">
+            <h1><i class="ti ti-user"></i></h1>
+            <h5>Enquiries</h5>
+            <h2>{{enqs_count}}</h2>
+        </div>
+    </div>
+
+</div>
+{% endblock  %}

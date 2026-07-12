@@ -1,0 +1,20 @@
+{% extends 'userbase.html' %}
+{% load static %}
+{% block user %}
+
+<div class="row">
+    <div class="col-sm-12 h-100 d-flex justify-content-center align-items-center text-center">
+        <h3>payment successfull</h3>
+        <div class="container mt-5 text-center">
+    <div class="card shadow p-4" style="border-radius: 20px;">
+        <img src="{% static 'img/success.png' %}" width="120" class="mb-3">
+
+        <h2 class="text-success">Payment Successful!</h2>
+        <p class="mt-2">Thank you! Your payment has been received successfully.</p>
+
+        <a href="{% url 'userdash' %}" class="btn btn-primary mt-3">Go to Dashboard</a>
+    </div>
+</div>
+    </div>
+</div>
+{% endblock %}

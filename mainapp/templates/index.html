@@ -1,0 +1,556 @@
+{% extends "base.html" %}
+{% load static %}
+{% block main %}
+
+<style>
+:root{
+--primary:#16a34a;
+--secondary:#10dd5c;
+--dark:#0f172a;
+--light:#f8fafc;
+--text:#1e293b;
+--muted:#64748b;
+--shadow:0 15px 35px rgba(0,0,0,.08);
+}
+
+html{
+scroll-behavior:smooth;
+}
+
+body{
+font-family:Segoe UI,sans-serif;
+background:linear-gradient(135deg,  #ecfdf5,#f0fdf4,#ffffff);
+color:var(--text);
+overflow-x:hidden;
+}
+
+.container-narrow{
+max-width:1200px;
+margin:auto;
+}
+
+/* HERO */
+.hero{
+padding:80px 0;
+background:linear-gradient(135deg,#dcfce7,#f0fdf4,#fff);
+position:relative;
+overflow:hidden;
+}
+
+.hero::before{
+content:'';
+position:absolute;
+width:250px;
+height:250px;
+background:rgba(34,197,94,.15);
+border-radius:50%;
+top:0;
+right:80px;
+filter:blur(60px);
+}
+
+.hero-inner{
+display:flex;
+align-items:center;
+gap:40px;
+position:relative;
+z-index:2;
+}
+
+.hero-left h1{
+font-size:55px;
+font-weight:800;
+margin-bottom:15px;
+}
+
+.hero-left p{
+font-size:18px;
+color:var(--muted);
+margin-bottom:25px;
+}
+
+.btn-main{
+background:linear-gradient(45deg,var(--primary),var(--secondary));
+color:#fff;
+padding:12px 28px;
+border-radius:12px;
+text-decoration:none;
+font-weight:700;
+box-shadow:var(--shadow);
+transition:.4s;
+display:inline-block;
+}
+
+.btn-main:hover{
+transform:translateY(-5px) scale(1.05);
+}
+
+.hero-img{
+max-width:350px;
+border-radius:20px;
+box-shadow:var(--shadow);
+transition:.5s;
+}
+
+.hero-img:hover{
+transform:scale(1.05) rotate(2deg);
+}
+
+/* SERVICES */
+.services{
+display:grid;
+grid-template-columns:repeat(4,1fr);
+gap:18px;
+margin-top:35px;
+}
+
+.service{
+background:#fff;
+padding:20px;
+border-radius:18px;
+box-shadow:var(--shadow);
+display:flex;
+gap:15px;
+align-items:center;
+transition:.4s;
+}
+
+.service:hover{
+transform:translateY(-8px);
+}
+
+.service i{
+font-size:32px;
+color:var(--primary);
+}
+
+/* SECTION TITLE */
+.section-title{
+text-align:center;
+font-size:34px;
+font-weight:800;
+margin-bottom:25px;
+}
+
+/* CARD */
+.card,.card-book,.review-box{
+background:#fff;
+border:none;
+border-radius:18px;
+box-shadow:var(--shadow);
+overflow:hidden;
+transition:.4s;
+}
+
+.card:hover,.card-book:hover,.review-box:hover{
+transform:translateY(-10px);
+}
+
+.card img,.card-book img{
+transition:.4s;
+}
+
+.card:hover img,.card-book:hover img{
+transform:scale(1.05);
+}
+
+/* FEATURED */
+.featured{
+padding:70px 0;
+}
+
+.splide__slide img{
+height:260px;
+width:100%;
+object-fit:cover;
+border-radius:16px 16px 0 0;
+}
+
+.card-body-custom{
+padding:15px;
+}
+
+/* NEWSLETTER */
+.newsletter{
+padding:40px;
+background:linear-gradient(135deg,#fff,#ecfccb);
+border-radius:20px;
+box-shadow:var(--shadow);
+text-align:center;
+}
+
+.newsletter input{
+width:60%;
+padding:12px;
+border-radius:12px;
+border:1px solid #ddd;
+}
+
+.newsletter button{
+padding:12px 18px;
+border:none;
+border-radius:12px;
+background:linear-gradient(45deg,var(--primary),var(--secondary));
+color:#fff;
+margin-left:10px;
+}
+
+/* ARRIVALS */
+.arrivals{
+padding:70px 0;
+}
+
+.card-book{
+display:flex;
+padding:15px;
+gap:15px;
+}
+
+.card-book img{
+width:110px;
+height:160px;
+object-fit:cover;
+border-radius:12px;
+}
+
+.title{
+font-weight:700;
+font-size:18px;
+}
+
+.price{
+color:var(--primary);
+font-weight:700;
+}
+
+.old-price{
+text-decoration:line-through;
+color:#888;
+font-size:14px;
+}
+
+.stars{
+color:#f59e0b;
+}
+
+/* BANNER */
+.bg-section{
+margin:70px 0;
+height:350px;
+background:url('https://softpropoly.pythonanywhere.com/static/image/letter-bg.jpg') center/cover no-repeat;
+display:flex;
+align-items:center;
+justify-content:center;
+border-radius:22px;
+overflow:hidden;
+box-shadow:var(--shadow);
+transition:.5s;
+}
+
+.bg-section:hover{
+transform:scale(1.02);
+}
+
+.overlay{
+background:rgba(0,0,0,.55);
+padding:40px;
+width:100%;
+text-align:center;
+color:#fff;
+}
+
+/* BLOG */
+.blogs{
+padding:70px 0;
+}
+
+/* FOOTER */
+.footer{
+background:linear-gradient(135deg,#0f172a,#1e293b);
+color:#fff;
+padding:60px 0;
+margin-top:70px;
+}
+
+.footer a{
+color:#cbd5e1;
+text-decoration:none;
+}
+
+.footer a:hover{
+color:#22c55e;
+}
+
+/* REVEAL */
+.reveal{
+opacity:0;
+transform:translateY(60px);
+transition:all .8s ease;
+}
+
+.reveal.active{
+opacity:1;
+transform:translateY(0);
+}
+
+/* Responsive */
+@media(max-width:992px){
+.services{
+grid-template-columns:repeat(2,1fr);
+}
+.hero-inner{
+flex-direction:column;
+text-align:center;
+}
+}
+
+@media(max-width:768px){
+.services{
+grid-template-columns:1fr;
+}
+.hero-left h1{
+font-size:38px;
+}
+.newsletter input{
+width:100%;
+margin-bottom:10px;
+}
+.newsletter button{
+margin-left:0;
+width:100%;
+}
+}
+</style>
+
+<!-- HERO -->
+<section class="hero reveal">
+<div class="container container-narrow">
+<div class="hero-inner">
+<div class="hero-left">
+<h1>Upto 75% Off Books</h1>
+<p>Best books, secure payment, fast delivery & premium reading experience.</p>
+<a href="#" class="btn-main">Shop Now</a>
+</div>
+<div class="hero-right">
+<img src="{% static 'img/b1.jpg' %}" class="hero-img">
+</div>
+</div>
+
+<div class="services">
+<div class="service"><i class="bi bi-truck"></i><div><b>Free Shipping</b><br><small>Above ₹599</small></div></div>
+<div class="service"><i class="bi bi-shield-lock"></i><div><b>Secure Payment</b><br><small>100% Safe</small></div></div>
+<div class="service"><i class="bi bi-arrow-repeat"></i><div><b>Easy Return</b><br><small>30 Days</small></div></div>
+<div class="service"><i class="bi bi-headset"></i><div><b>24/7 Support</b><br><small>Always Here</small></div></div>
+</div>
+</div>
+</section>
+
+<!-- FEATURED -->
+<section class="featured reveal">
+<div class="container container-narrow">
+<h2 class="section-title">Featured Books</h2>
+
+<div id="featuredSplide" class="splide">
+<div class="splide__track">
+<ul class="splide__list">
+{% for b in books %}
+<li class="splide__slide">
+<div class="card">
+<img src="{{ b.cover_image.url }}">
+<div class="card-body-custom">
+<h5>{{ b.title }}</h5>
+<p class="price">₹{{ b.price }}</p>
+
+<form action="{% url 'addtocart' bid=b.id %}" method="post">
+{% csrf_token %}
+<input type="hidden" name="quantity" value="1">
+<button class="btn btn-success w-100">Add To Cart</button>
+</form>
+
+</div>
+</div>
+</li>
+{% endfor %}
+</ul>
+</div>
+</div>
+
+</div>
+</section>
+
+<!-- NEWSLETTER -->
+<section class="reveal">
+<div class="container container-narrow">
+<div class="newsletter">
+<h3>Subscribe Newsletter</h3>
+<p class="text-muted">Get latest offers & updates</p>
+<input type="email" placeholder="Enter Email">
+<button>Subscribe</button>
+</div>
+</div>
+</section>
+
+<!-- ARRIVALS -->
+<section class="arrivals reveal">
+<div class="container container-narrow">
+<h2 class="section-title">New Arrivals</h2>
+
+<div class="row">
+{% for b in books %}
+<div class="col-md-6 col-lg-4 mb-4">
+<div class="card-book">
+<img src="{{ b.cover_image.url }}">
+<div>
+<div class="title">{{ b.title }}</div>
+<div class="price">₹{{ b.price }}</div>
+<div class="old-price">₹{{ b.original_price }}</div>
+<div class="stars">★★★★★</div>
+
+<a href="{% url 'book_details' id=b.id %}" class="btn btn-outline-dark btn-sm mt-2">View</a>
+
+<form action="{% url 'addtocart' bid=b.id %}" method="post" class="d-inline">
+{% csrf_token %}
+<input type="hidden" name="quantity" value="1">
+<button class="btn btn-success btn-sm mt-2">Cart</button>
+</form>
+
+</div>
+</div>
+</div>
+{% endfor %}
+</div>
+</div>
+</section>
+
+<!-- BANNER -->
+<section class="bg-section reveal">
+<div class="overlay">
+<h2>Discover More Books</h2>
+<p>Exclusive collections, trending books and premium reading experience.</p>
+<a href="#" class="btn-main">Explore</a>
+</div>
+</section>
+
+<!-- REVIEW -->
+<section class="reveal">
+<div class="container container-narrow text-center">
+<h2 class="section-title">Client Reviews</h2>
+<div class="review-box p-4">
+<!-- <img src="{% static 'img/user.png' %}" width="80" class="rounded-circle mb-3"> -->
+<h5>John</h5>
+<p class="text-muted">Amazing quality books and super fast delivery.</p>
+<div class="stars">★★★★★</div>
+</div>
+</div>
+</section>
+
+<!-- BLOG -->
+<section class="blogs reveal">
+<div class="container container-narrow">
+<h2 class="section-title">Our Blogs</h2>
+<div class="row">
+
+<div class="col-md-4 mb-4">
+<div class="card p-3">
+<img src="{% static 'img/b1.jpg' %}" class="img-fluid rounded">
+<h5 class="mt-3">Top Reading Habits</h5>
+<p class="text-muted">Best habits for smart readers.</p>
+<a href="#" class="btn btn-outline-success btn-sm">Read More</a>
+</div>
+</div>
+
+<div class="col-md-4 mb-4">
+<div class="card p-3">
+<img src="{% static 'img/b3.jpg' %}" class="img-fluid rounded">
+<h5 class="mt-3">Self Help Books</h5>
+<p class="text-muted">Top motivational books collection.</p>
+<a href="#" class="btn btn-outline-success btn-sm">Read More</a>
+</div>
+</div>
+
+<div class="col-md-4 mb-4">
+<div class="card p-3">
+<img src="{% static 'img/b1.jpg' %}" class="img-fluid rounded">
+<h5 class="mt-3">Author Spotlight</h5>
+<p class="text-muted">Meet your favourite authors.</p>
+<a href="#" class="btn btn-outline-success btn-sm">Read More</a>
+</div>
+</div>
+
+</div>
+</div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer reveal">
+<div class="container container-narrow">
+<div class="row">
+<div class="col-md-3">
+<h5>Company</h5>
+<p>Your trusted bookstore.</p>
+</div>
+
+<div class="col-md-3">
+<h5>Links</h5>
+<ul class="list-unstyled">
+<li><a href="#">About</a></li>
+<li><a href="#">Shop</a></li>
+<li><a href="#">Blogs</a></li>
+</ul>
+</div>
+
+<div class="col-md-3">
+<h5>Support</h5>
+<ul class="list-unstyled">
+<li><a href="#">Orders</a></li>
+<li><a href="#">Help</a></li>
+<li><a href="#">Privacy</a></li>
+</ul>
+</div>
+
+<div class="col-md-3">
+<h5>Contact</h5>
+<p>info@example.com <br> +91 9876543210</p>
+</div>
+</div>
+</div>
+</footer>
+
+<link rel="stylesheet" href="{% static 'css/splide.min.css' %}">
+<script src="{% static 'js/splide.min.js' %}"></script>
+
+<script>
+document.addEventListener('DOMContentLoaded',function(){
+
+new Splide('#featuredSplide',{
+type:'loop',
+perPage:4,
+gap:'20px',
+autoplay:true,
+interval:2500,
+pauseOnHover:true,
+breakpoints:{
+1000:{perPage:3},
+768:{perPage:2},
+480:{perPage:1}
+}
+}).mount();
+
+/* Scroll Animation */
+function reveal(){
+let reveals=document.querySelectorAll('.reveal');
+for(let i=0;i<reveals.length;i++){
+let wh=window.innerHeight;
+let top=reveals[i].getBoundingClientRect().top;
+if(top<wh-100){
+reveals[i].classList.add('active');
+}
+}
+}
+window.addEventListener('scroll',reveal);
+reveal();
+
+});
+</script>
+
+{% endblock %}

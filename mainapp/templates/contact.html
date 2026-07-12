@@ -1,0 +1,58 @@
+{% extends 'base.html' %}
+{% block main %}
+
+<div class="row">
+  <div class="col-sm-10" mx-auto>
+    <div class="row">
+      <div class="col-sm-6">
+        {% if messages %} 
+            {% for m in messages%}
+
+        <div
+          class="alert alert-warning alert-dismissible fade show"
+          role="alert"
+        >
+          {{m}}
+          <button
+            type="button"
+            class="btn-close"
+            data-bs-dismiss="alert"
+            aria-label="Close"
+          ></button>
+        </div>
+
+            {% endfor %} 
+        {% endif %}
+        <form method="post">
+          {% csrf_token %}
+          <label for="n">name:</label>]
+          <input type="text" name="name" id="n" class="form-control mb-4" />
+          <label for="n">email:</label>]
+          <input type="email" name="email" id="em" class="form-control mb-4" />
+          <label for="n">contact No::</label>]
+          <input
+            type="number"
+            name="contactno"
+            id="cn"
+            class="form-control mb-4"
+          />
+          <label for="n">Subject:</label>]
+          <input
+            type="text"
+            name="subject"
+            id="sub"
+            class="form-control mb-4"
+          />
+          <label for="n">Message:</label>]
+          <textarea
+            name="message"
+            id="msg"
+            class="form-control mb-4"
+          ></textarea>
+          <button type="submit" class="btn btn-success">Sen</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

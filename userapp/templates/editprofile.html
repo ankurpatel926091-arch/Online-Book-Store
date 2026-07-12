@@ -1,0 +1,26 @@
+{% extends 'userbase.html' %}
+{% load static %}
+{% block user %}
+
+<div class="row">
+    <div class="col-sm-12">
+        <h3>edit profile</h3>
+        <form method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="mb-3">
+                <label for="n" >Name</label>
+                <input type="text" name="name" value="{{user.name}}" class="form-control mb-4" id="n">
+                <label for="n" >Email <small>(your cannot change it)</small></label>
+                <input type="email" name="email" value="{{user.email}}" class="form-control mb-4" id="em"  disabled>
+                <label for="n">contactn no:</label>
+                <input type="number" name="contactno" id="n" value="{{user.contactno}}" class="form-control mb-4">
+                <label for="pic">Profile Picture:</label>
+                <input type="file" name="picture" id="n" class="form-control mb-4">
+                <label for="add">address:</label>
+                <textarea name="address" id="add" class="form-control mb-4">{{user.address}}</textarea>
+                <button type="submit" class="btn btn-primary">Update Profile</button>
+            </div>
+     </form>
+    </div>
+</div>
+{% endblock %}
