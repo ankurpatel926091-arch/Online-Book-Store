@@ -23,11 +23,12 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-8z9rn9*v!4973&b9^s6&2tztoo_3r(0q#i%vfz1@gq%k7hro^b'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = [
     "127.0.0.1",
     "localhost",
+    "testserver",
     ".vercel.app",
     "online-book-store-ivory-three.vercel.app",
 ]
@@ -126,11 +127,8 @@ import os
 
 STATIC_URL = '/static/'
 
-STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, "static"),
-]
-
 STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")
+STATICFILES_DIRS = []
 
 MEDIA_URL = "/media/"
 MEDIA_ROOT = os.path.join(BASE_DIR, "media")
@@ -152,10 +150,3 @@ STRIPE_SECRET_KEY = os.environ.get('STRIPE_SECRET_KEY', '')
 STRIPE_PUBLISHABLE_KEY = os.environ.get('STRIPE_PUBLISHABLE_KEY', 'your_publishable_key')
 
 
-STATIC_URL = "/static/"
-
-STATICFILES_DIRS = [
-    BASE_DIR / "mainapp" / "static",
-]
-
-STATIC_ROOT = BASE_DIR / "staticfiles"
